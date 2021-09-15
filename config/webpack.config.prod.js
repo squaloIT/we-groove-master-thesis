@@ -13,7 +13,7 @@ module.exports = {
     minimizer: [new UglifyJsPlugin()],
   },
   output: {
-    path: path.resolve(__dirname, './../../server/dist'),
+    path: path.resolve(__dirname, './../dist'),
     filename: '[name].bundle.js',
   },
   module: {

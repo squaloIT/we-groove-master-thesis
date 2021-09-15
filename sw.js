@@ -15,7 +15,7 @@ precacheAndRoute([
   // { url: '/', revision: 'dasdasczxczxc2323' }, - Ne moze da bude ovde jer onda dodavanje novog posta ne bude procitano. 
   { url: '/offline' },
   { url: '/script.bundle.js', revision: '123123asdasdasd' },
-  { url: '/src_js_index_js.bundle.js', revision: 'asdasdasd' },
+  { url: '/app_js_index_js.bundle.js', revision: 'asdasdasd' },
   { url: '/assets/coverPic.jpg', revision: '2e12ue1u2en' },
   { url: '/assets/coverPic.png', revision: 'daknsduabdbbdbd' },
   { url: '/assets/loading-dots.gif', revision: null },
