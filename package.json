@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start-prod": "node index.js",
+    "start": "node index.js",
     "start-dev": "npm run build:dev && nodemon src/index.js -e js,liquid",
     "build": "npm run clean && webpack --mode production",
     "build:dev": "npm run clean && webpack --mode development",
