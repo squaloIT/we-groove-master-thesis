@@ -8,8 +8,8 @@
     "start-prod": "node index.js",
     "start": "node index.js",
     "start-dev": "npm run build:dev && nodemon src/index.js -e js,liquid",
-    "build:prod": "npm run clean && webpack --mode production",
-    "build": "npm run clean && webpack --mode development",
+    "build": "npm run clean && webpack --mode production",
+    "build:dev": "npm run clean && webpack --mode development",
     "stats": "webpack --profile --json > stats.json",
     "dev": "npm run clean && webpack --mode development --watch",
     "clean": "rimraf dist"
