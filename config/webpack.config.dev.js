@@ -43,12 +43,6 @@ module.exports = {
       path: path.resolve(__dirname, './../.env.production')
     }),
     new webpack.HotModuleReplacementPlugin(),
-    // new webpack.NamedModulesPlugin(),
-    // new webpack.DefinePlugin({
-    //   PRODUCTION: JSON.stringify(false),
-    //   VERSION: JSON.stringify('0.0.1'),
-    //   DEBUG: true
-    // }),
     new CopyPlugin({
       patterns: [
         {
@@ -57,7 +51,7 @@ module.exports = {
         },
         {
           from: path.resolve(__dirname, './../manifest.webmanifest'),
-          to: path.resolve(__dirname, './../../server/dist/manifest.webmanifest'),
+          to: path.resolve(__dirname, './../dist/manifest.webmanifest'),
         },
         // {
         //   from: path.resolve(__dirname, './../sw.js'),

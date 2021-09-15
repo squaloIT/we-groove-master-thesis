@@ -53,7 +53,7 @@ module.exports = {
         },
         {
           from: path.resolve(__dirname, './../manifest.webmanifest'),
-          to: path.resolve(__dirname, './../../server/dist/manifest.webmanifest'),
+          to: path.resolve(__dirname, './../dist/manifest.webmanifest'),
         },
         // {
         //   from: path.resolve(__dirname, './../sw.js'),
