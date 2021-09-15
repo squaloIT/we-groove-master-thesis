@@ -397,6 +397,7 @@ function onSendMessage(e, messageInput, chatMessagesContainer, selectedImages) {
   messageInput.focus()
   return sendMessage(chatId, content, selectedImages)
     .then(res => {
+      console.log(res.data)
       addNewMessage(res.data, 'sent', res.data.images)
       scrollMessagesToBottom(chatMessagesContainer)
       stopTyping(chatId)
