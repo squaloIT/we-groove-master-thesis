@@ -3,6 +3,7 @@ const CompressionPlugin = require("compression-webpack-plugin");
 const Dotenv = require('dotenv-webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const Workbox = require('workbox-webpack-plugin');
 
 module.exports = {
   mode: 'production',
