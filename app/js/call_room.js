@@ -3,7 +3,7 @@ import { io } from "socket.io-client";
 import { createAudioBlock, createVideoCallBlock } from './utils/html-creators';
 
 export default function call_room() {
-  var socket = io("http://localhost:3000")
+  var socket = io(process.env.SERVER_URL)
   const myPeer = new Peer(undefined, {
     host: '/',
     port: '9000'

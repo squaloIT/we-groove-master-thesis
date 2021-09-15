@@ -4,7 +4,7 @@ import { onCallDisplayRinging, onDisconnectRemoveFriendFromList, onFindingOnline
 var socket = null;
 
 function connectClientSocket(jwtUser) {
-  socket = io("http://localhost:3000")
+  socket = io(process.env.SERVER_URL)
   socket.on('connect', () => {
     console.log("CONNECTED")
     console.log(socket)
