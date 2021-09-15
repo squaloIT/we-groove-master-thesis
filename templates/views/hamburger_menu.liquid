@@ -1,0 +1,34 @@
+
+<!-- The overlay -->
+<div id="myNav" class='w-full h-0 overlay bg-[#F5F8FA] left-0 top-0 fixed z-50'>
+
+  <!-- Button to close the overlay navigation -->
+  <div class='absolute right-0 top-0 w-full flex justify-between items-center px-4'>
+    <div>
+      <a href="/" rel="noopener noreferrer">
+        <i class="fab fa-glide text-3xl xs:text-4xl sm:text-5xl text-brand-purple cursor-pointer"></i>
+      </a>
+    </div>
+    <a href="javascript:void(0)" id="close_hamburger_overlay_btn" class='text-4xl xs:text-5xl text-brand-purple'>&times;</a>
+  </div>
+
+  <!-- Overlay content -->
+  <div class="overlay-content mt-12 xs:mt-14 sm:mt-16 font-lobster ">
+    <div class='w-full'>
+      <a class='text-brand-purple pl-4 xs:pl-6 sm:pl-10 py-3 border-b border-t border-brand-purple hamburger-menu-link no-underline text-2xl xs:text-3xl sm:text-4xl block' href="/">Home</a>
+      <a class='text-brand-purple pl-4 xs:pl-6 sm:pl-10 py-3  border-b border-brand-purple hamburger-menu-link no-underline text-2xl xs:text-3xl sm:text-4xl block' href="/search/posts">Search</a>
+      <a class='text-brand-purple pl-4 xs:pl-6 sm:pl-10  py-3 border-b border-brand-purple hamburger-menu-link no-underline text-2xl xs:text-3xl sm:text-4xl block' href="/notifications">Notifications</a>
+      <a class='text-brand-purple pl-4 xs:pl-6 sm:pl-10  py-3 border-b border-brand-purple hamburger-menu-link no-underline text-2xl xs:text-3xl sm:text-4xl block' href="/messages">Messages</a>
+      <a class='text-brand-purple pl-4 xs:pl-6 sm:pl-10  py-3 border-b border-brand-purple hamburger-menu-link no-underline text-2xl xs:text-3xl sm:text-4xl block' href="/profile/{{user.username}}">Profile</a>
+      <a class='text-brand-purple pl-4 xs:pl-6 sm:pl-10  py-3 border-b border-brand-purple hamburger-menu-link no-underline text-2xl xs:text-3xl sm:text-4xl block' href="/logout">Logout</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- Use any element to open/show the overlay navigation menu -->
+<span id="open_hamburger_overlay_btn" class='cursor-pointer text-brand-purple'>
+  <span class='bg-brand-purple line w-6  xs:w-7 sm:w-8 h-[3px] xs:h-1 mb-1 block'></span>
+  <span class='bg-brand-purple line w-6  xs:w-7 sm:w-8 h-[3px] xs:h-1 mb-1 block'></span>
+  <span class='bg-brand-purple line w-6 xs:w-7 sm:w-8 h-[3px] xs:h-1 mb-1 block'></span>
+</span>

@@ -1,0 +1,21 @@
+<label for='{{inputName}}' class="block text-xl lg:text-base font-roboto mb-1 ml-1 {{additionalLabelClasses}}">
+  {{labelText}}
+</label>
+<input
+  class="mt-0 block w-full px-1 py-2 xs:text-xl text-lg lg:text-base border-0 border-b-2 border-brand-purple focus:ring-0 focus:border-brand-purple bg-transparent {{additionalInputClasses}}"
+  type="{{type}}" 
+  placeholder="{{placeholder}}" 
+  name="{{inputName}}" 
+  id="{{inputId}}" 
+  value="{{value}}" 
+  autocomplete
+  {% if required == true %}
+    required
+  {% endif %}
+/><br />
+
+{% if hasErrorLabel == true %}
+  <label for='{{inputName}}' class="xs:text-xl text-lg lg:text-base font-roboto text-red-500 mb-1 ml-1 hidden">
+    {{errorLabelText}}
+  </label>
+{% endif %}

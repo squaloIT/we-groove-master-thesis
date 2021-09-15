@@ -1,0 +1,52 @@
+<div class="w-full" id='profile'>
+  <div class='flex flex-wrap border-b border-super-light-gray-border px-3 py-3'>
+    <h1 class="page-title w-10/12 md:w-full text-2xl sm:text-3xl"> {{userProfile.username}}</h1>
+
+    <div class='w-2/12 flex justify-end items-center md:hidden'>
+      {% render 'hamburger_menu' user: user %}
+    </div>
+
+    <p class='text-base w-full text-gray-500 '>{{posts.size}} Posts</p>
+  </div>
+
+  <div class='top-wrapper border-b border-super-light-gray-border pb-4 mt-2 px-3'>
+    <h1 class="page-title text-2xl sm:text-3xl"> </h1>
+   
+  </div>
+
+    {% render 'profile_page_pictures', userProfile: userProfile, user: user %}
+    {% render 'profile_page_user_info', userProfile: userProfile %}
+
+  <div class='tabs-wrapper'>
+  
+  {% assign postsHref = "/profile/" | append: userProfile.username | append: "/posts" %}
+  {% assign repliesHref = "/profile/" | append: userProfile.username | append: "/replies" %}
+
+  {% if userProfile._id == user._id %}
+    {% assign likesHref =  "/profile/" | append: userProfile.username | append: "/likes" %}
+    {% render 'profile_page_tab', href: postsHref, userProfile: userProfile, active: active, text: 'Posts', width: 3 %}
+    {% render 'profile_page_tab', href: repliesHref, userProfile: userProfile, active: active, text: 'Replies', width: 3 %}
+    {% render 'profile_page_tab', href: likesHref, userProfile: userProfile, active: active, text: 'Likes', width: 3 %}    
+  {% else %} 
+    {% render 'profile_page_tab', href: postsHref, userProfile: userProfile, active: active, text: 'Posts', width: 2 %}
+    {% render 'profile_page_tab', href: repliesHref, userProfile: userProfile, active: active, text: 'Replies', width: 2 %} 
+  {% endif %}
+  </div>
+
+  <div class='content-wrapper' id='profile-posts'>
+      <div class='pinned-post-wrapper'>
+        {% if pinnedPost %}
+          <div class='border-b-[6px] border-super-light-gray-border'>
+              {% render 'post', post: pinnedPost, user: user %}
+          </div>
+        {% endif %}
+      </div>
+      {% render 'posts', posts: posts, user: user %}
+  
+  </div>
+  {% if userProfile._id == user._id %}  
+    {% render 'change_photo_modal', user: user %}
+  {% endif %}
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"  referrerpolicy="no-referrer"></script>

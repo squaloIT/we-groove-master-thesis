@@ -1,0 +1,25 @@
+<div class='follow-user-row '>
+  <div class='w-4/5 flex'>
+    {% render 'user_follow_details', follow: follow%}
+  </div>
+
+  <div class='profile-follow-buttons w-1/5 flex flex-col justify-start'>
+    {% if follow._id == user._id %}
+
+      <button data-profile-id="{{user._id}}" class='edit-profile-button cursor-pointer text-base font-semibold rounded-md xs:rounded-lg sm:rounded-xl outline-none px-1 py-1 xs:px-2 xs:py-1.5 sm:px-3 sm:py-2 focus:outline-white focus:shadow-none focus:ring-0'>
+        <span class='comment-button__label pointer-events-none'>Edit profile</span>
+      </button>
+
+    {% else %}
+
+      {% comment %} <div class='flex space-x-5 following-buttons-wrapper'> {% endcomment %}
+
+        <button data-profile-id="{{follow._id}}" class='following-unfollowing-button unfollow-button '>
+          <span class='follow-button__label pointer-events-none ring-0  '>Following</span>
+          <i class="follow-button__spinner hidden fas fa-spinner fa-pulse"></i>
+        </button>
+        
+      {% comment %} </div> {% endcomment %}
+    {% endif %}
+  </div>
+</div>

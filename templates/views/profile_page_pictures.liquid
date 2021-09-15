@@ -1,0 +1,62 @@
+{% assign userFollowing = user.following | join: "," %}
+
+<div class="profile-pictures-wrapper">
+  <div class="profile-pictures-container">
+    <div class='profile-cover-picture w-full flex justify-center items-center relative border-b border-super-light-gray-border xs:h-48 sm:h-80 overflow-hidden'>
+      <img src='{{userProfile.coverPic}}' alt='Cover' class='w-full' />
+      {% if userProfile._id == user._id %}
+        <i class="fas fa-camera-retro text-4xl hidden text-opacity-40 text-black absolute z-10 hover:cursor-pointer"></i>
+      {% endif %}
+    </div>
+    
+    <div class='profile-pictures flex justify-end items-end relative px-3'>
+      <div class="profile-picture-container rounded-full border-2 border-white w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 absolute -top-12 sm:-top-16 md:-top-20 left-4 flex justify-center items-center">
+        <img src="{{userProfile.profilePic}}" alt="User profile picture" class='w-full rounded-full border-2 hover:bg-opacity-90' />
+        
+        {% if userProfile._id == user._id %}  
+          <i class="fas fa-camera-retro text-4xl hidden text-opacity-40 text-black absolute z-10 hover:cursor-pointer"></i>
+        {% endif %}     
+      </div>
+
+      <div class='profile-follow-buttons'>
+        <div class='flex justify-items-end space-x-5 mt-5'>
+
+        {% if userProfile._id == user._id %}
+
+          {% comment %} <button data-profile-id="{{userProfile._id}}" class='edit-profile-button cursor-pointer text-base font-semibold rounded-xl outline-none px-3 py-2 focus:outline-white focus:shadow-none focus:ring-0'>
+            <span class='comment-button__label pointer-events-none'>Edit profile</span>
+          </button> {% endcomment %}
+
+        {% else %}
+
+          {% if userFollowing contains userProfile._id %}
+            {% comment %} <div class='following-buttons-wrapper'> {% endcomment %}
+              <a href="/messages/{{userProfile._id}}" data-profile-id="{{userProfile._id}}" class='message-user-link cursor-pointer border-2 border-[#1DA1F2] white-text-onHover-button text-sm xs:text-base sm:text-lg font-normal rounded-xl bg-white outline-none px-2.5 sm:px-3 hover:bg-[#1DA1F2] flex items-center'>
+                <span class='pointer-events-none text-[#1DA1F2]'>
+                  <i class="fas fa-envelope"></i>
+                </span>
+              </a>
+              
+              <button data-profile-id="{{userProfile._id}}" class='following-unfollowing unfollow-button cursor-pointer font-semibold rounded-xl outline-none px-2.5 py-1.5 sm:px-3 focus:outline-white focus:shadow-none focus:ring-0 text-xs xs:text-sm sm:text-base'>
+                <span class='follow-button__label pointer-events-none ring-0 '>Following</span>
+                <i class="follow-button__spinner hidden fas fa-spinner fa-pulse"></i>
+              </button>
+            {% comment %} </div> {% endcomment %}
+
+          {% else %} 
+            {% comment %} <div class='following-buttons-wrapper'> {% endcomment %}
+  
+              <button data-profile-id="{{userProfile._id}}" class='following-unfollowing follow-button cursor-pointer rounded-xl outline-none px-2.5 py-1.5 sm:px-3 font-semibold ring-0 focus:outline-white focus:shadow-none focus:ring-0 text-xs xs:text-sm sm:text-base '>
+                <span class='follow-button__label pointer-events-none'>Follow</span>
+                <i class="follow-button__spinner hidden fas fa-spinner fa-pulse"></i>
+              </button>
+            
+            {% comment %} </div> {% endcomment %}
+          {% endif %}
+        {% endif %}
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

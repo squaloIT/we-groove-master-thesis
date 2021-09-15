@@ -1,0 +1,42 @@
+<div class='profile-info-wrapper mt-10 sm:mt-14 md:mt-20 px-4'>
+    <div class='profile-usernames-wrapper pb-3'>
+      <h3 class='text-xl sm:text-2xl font-bold text-dark-gray-for-text'>{{userProfile.fullName}}</h3>
+      <p class='text-sm sm:text-base text-mid-gray-for-text '>@{{userProfile.username}}</p>
+    </div>
+
+    <div class='profile-info-description mb-2'>
+      <p class='text-dark-gray-for-text text-sm md:text-base'>{{userProfile.description}}</p>
+    </div>
+    <div class='profile-info-joined mb-3'>
+      <p class='text-mid-gray-for-text flex items-center'>
+        <span class='inline pr-2'>
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="w-5 h-5 fill-current inline text-mid-gray-for-text">
+            <g><path d="M19.708 2H4.292C3.028 2 2 3.028 2 4.292v15.416C2 20.972 3.028 22 4.292 22h15.416C20.972 22 22 20.972 22 19.708V4.292C22 3.028 20.972 2 19.708 2zm.792 17.708c0 .437-.355.792-.792.792H4.292c-.437 0-.792-.355-.792-.792V6.418c0-.437.354-.79.79-.792h15.42c.436 0 .79.355.79.79V19.71z"></path><circle cx="7.032" cy="8.75" r="1.285"></circle><circle cx="7.032" cy="13.156" r="1.285"></circle><circle cx="16.968" cy="8.75" r="1.285"></circle><circle cx="16.968" cy="13.156" r="1.285"></circle><circle cx="12" cy="8.75" r="1.285"></circle><circle cx="12" cy="13.156" r="1.285"></circle><circle cx="7.032" cy="17.486" r="1.285"></circle><circle cx="12" cy="17.486" r="1.285"></circle></g>
+          </svg>
+        </span>
+        <span class="text-xs sm:text-sm md:text-base">
+          Joined {{userProfile.joined}}
+        </span>
+      </p>
+    </div>
+
+    <div class='following-info-wrapper flex justify-start mb-3 sm:mb-4 md:mb-5'>
+       <div class='profile-info-following'>
+        <p class='text-xs sm:text-sm md:text-base'>
+          <a class='block w-full' href="/profile/{{userProfile.username}}/following">
+            <span class='number-of-following font-bold'>{{userProfile.following.size}}</span> 
+            <span class='text-mid-gray-for-text'>Following</span>
+          </a>
+        </p>
+      </div>
+
+      <div class='profile-info-followers ml-4 sm:ml5 md:ml-7'>
+        <p class='text-xs sm:text-sm md:text-base'>
+          <a class='block w-full' href="/profile/{{userProfile.username}}/followers">
+            <span class='number-of-followers font-bold'>{{userProfile.followers.size}}</span> 
+            <span class='text-mid-gray-for-text'>Followers</span>
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>

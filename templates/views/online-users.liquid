@@ -1,0 +1,33 @@
+<div class='online-users-container fixed bottom-0 right-20 w-80 rounded-2xl rounded-b-none font-roboto py-1 bg-white z-20 hidden lg:block'>
+  <div class='online-users-header flex justify-between items-center border-b border-super-light-gray-border px-4'>
+    <p class='text-xl font-semibold text-dark-gray-for-text w-full'>Online</p>
+
+    <button class='open-online-users hover:bg-comment-button-blue-background hover:text-comment-button-blue p-2 rounded-full'>
+      <svg viewBox="0 0 24 24" aria-hidden="true" class="fill-current text-comment-button-blue h-6 w-6 pointer-events-none"><g><path d="M12 4.656l8.72 8.72c.293.293.768.293 1.06 0s.294-.768 0-1.06l-9.25-9.25c-.292-.294-.767-.294-1.06 0l-9.25 9.25c-.146.145-.22.337-.22.53s.073.383.22.53c.293.292.768.292 1.06 0L12 4.656z"></path><path d="M12 12.465l8.72 8.72c.293.293.768.293 1.06 0s.294-.768 0-1.06l-9.25-9.25c-.292-.294-.767-.294-1.06 0l-9.25 9.25c-.146.145-.22.337-.22.53s.073.383.22.53c.293.292.768.292 1.06 0l8.72-8.72z"></path></g></svg>
+    </button>
+
+    <button class='hidden close-online-users hover:bg-comment-button-blue-background hover:text-comment-button-blue p-2 rounded-full'>
+      <svg viewBox="0 0 24 24" aria-hidden="true" class="fill-current text-comment-button-blue h-6 w-6 pointer-events-none"><g><path d="M12 19.344l-8.72-8.72c-.293-.293-.768-.293-1.06 0s-.294.768 0 1.06l9.25 9.25c.292.294.767.294 1.06 0l9.25-9.25c.146-.145.22-.337.22-.53s-.073-.383-.22-.53c-.293-.292-.768-.292-1.06 0L12 19.344z"></path><path d="M12 11.535l-8.72-8.72c-.293-.293-.768-.293-1.06 0s-.294.768 0 1.06l9.25 9.25c.292.294.767.294 1.06 0l9.25-9.25c.146-.145.22-.337.22-.53s-.073-.383-.22-.53c-.293-.292-.768-.292-1.06 0L12 11.535z"></path></g></svg>
+    </button>
+
+  </div>
+
+  <div class='online-users-list bg-white slide-down'>
+     
+     {% comment %} <a href='/profile/{{user._id}}'>
+        <div class='user-row flex justify-between p-2 items-center border-b border-light-gray-for-text border-opacity-20 hover:bg-light-gray-for-text hover:bg-opacity-20 px-4'>
+          <div class='image-container flex items-center'>
+            <div class="image-container w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14">
+              <img class='w-10 sm:w-12 md:w-14 rounded-full bg-white' src="{{user.profilePic}}" alt="{{user.username}}" title='{{user.username}}' />
+            </div>
+          </div>
+
+          <div class='content-container flex flex-col justify-between w-full pl-2'>
+            <h6 class='font-bold'>{{user.fullName}}</h6>
+            <p class='font-light text-sm text-light-gray-for-text'>@{{user.username}}</p>
+          </div>
+        </div>
+      </a>
+       {% endcomment %}
+  </div>
+</div>

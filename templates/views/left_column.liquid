@@ -1,0 +1,52 @@
+<a href="/" rel="noopener noreferrer">
+{% comment %} -g {% endcomment %}
+  {% render 'left_column_icon', icon: 'fab fa-glide', iconSize: 'text-4xl' %}
+</a>
+  
+{% comment %} <a href="/" rel="noopener noreferrer">
+  {% render 'left_column_icon', icon: 'fas fa-igloo', iconSize: 'text-3xl' %}
+</a> {% endcomment %}
+
+<a href='/search/posts' rel="noopener noreferrer">
+  {% render 'left_column_icon', icon: 'fab fa-searchengin', iconSize: 'text-3xl' %}
+</a>
+
+<a href='/notifications' rel="noopener noreferrer" class='relative'>
+  {% render 'left_column_icon', icon: 'far fa-bell', iconSize: 'text-3xl' %}
+
+  <span id='numOfUnreadNotifications' 
+    {% if numOfUnreadNotifications > 0 %}
+      class='absolute flex items-center justify-center -right-3 -top-2 text-white font-roboto bg-red-700 rounded-full h-5 w-5 text-xs'
+    {% else %}
+      class='absolute flex items-center justify-center -right-3 -top-2 text-white font-roboto rounded-full h-5 w-5 text-xs'
+    {% endif %}
+  >
+    {% if numOfUnreadNotifications > 0 %}
+      {{numOfUnreadNotifications}}
+    {% endif %}
+  </span>
+</a>
+
+<a href='/messages' rel="noopener noreferrer" class='relative'>
+  {% render 'left_column_icon', icon: 'far fa-envelope', iconSize: 'text-3xl' %}
+
+  <span id='numOfUnreadChats' 
+    {% if numOfUnreadChats > 0 %}
+      class='absolute flex items-center justify-center -right-3 -top-2 text-white font-roboto bg-red-700 rounded-full h-5 w-5 text-xs'
+    {% else %}
+      class='absolute flex items-center justify-center -right-3 -top-2 text-white font-roboto rounded-full h-5 w-5 text-xs'
+    {% endif %}
+  >
+    {% if numOfUnreadChats > 0 %}
+      {{numOfUnreadChats}}
+    {% endif %}
+  </span>
+</a>
+
+<a href="/profile/{{user.username}}">
+  {% render 'left_column_icon', icon: 'far fa-user', iconSize: 'text-3xl' %}
+</a>
+
+<a href="/logout">
+  {% render 'left_column_icon', icon: 'fas fa-sign-out-alt', iconSize: 'text-3xl' %}
+</a>

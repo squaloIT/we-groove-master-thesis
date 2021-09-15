@@ -1,0 +1,41 @@
+{% if chat.latestMessage.content %}
+  <div 
+    {% if chat.isSeen == false %}
+      class='w-full px-2 sm:px-4 md:px-6 py-2 border-b border-super-light-gray-border flex justify-between bg-comment-button-blue-background'
+    {% else %}
+      class='w-full px-2 sm:px-4 md:px-6 py-2 border-b border-super-light-gray-border flex justify-between'
+    {% endif %}
+    data-chat-id="{{chat._id}}"
+  >
+    <div class='chat-image-rounded w-2/12 xs:w-1/12'>
+      <a href="/messages/{{chat._id}}">
+        {% if chat.users.size > 1 %}
+          {% render 'group_chat_images_rounded', users: chat.users %}
+        {% else %}
+          {% render 'small_profile_image_rounded', user: chat.users[0] %}
+        {% endif %}
+      </a>
+    </div>
+
+    <div class='chat-info-messages w-10/12 xs:w-11/12 ml-3 sm:ml-5'>
+      <a href="/messages/{{chat._id}}">
+        <h4 
+        {% if chat.isSeen == false %}
+          class='text-base xs:text-lg sm:text-xl overflow-hidden whitespace-nowrap overflow-ellipsis font-semibold'
+        {% else %}
+          class='text-base xs:text-lg sm:text-xl overflow-hidden whitespace-nowrap overflow-ellipsis'
+        {% endif %}
+        >{{ chat.chatName }}</h4>
+        <p 
+        {% if chat.isSeen == false %}
+          class='text-brand-dark-gray text-sm xs:text-base sm:text-lg overflow-hidden whitespace-nowrap overflow-ellipsis font-medium'
+        {% else %}
+          class='text-brand-dark-gray text-sm xs:text-base sm:text-lg overflow-hidden whitespace-nowrap overflow-ellipsis'
+        {% endif %}
+        >
+          {{ chat.latestMessage.sender.fullName }}: {{ chat.latestMessage.content}}
+        </p>
+      </a>
+    </div>
+  </div>
+{% endif %}

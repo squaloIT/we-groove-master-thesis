@@ -1,0 +1,57 @@
+{% if notifications.size > 0 %}
+    {% for notification in notifications %}
+        <a 
+        {% if notification.seen == false %}
+            class='notification-link inline-block w-full active bg-comment-button-blue-background'
+        {% else %}
+            class='notification-link inline-block w-full'
+        {% endif %}
+        
+        {% if notification.notificationType == 'follow' %}
+            href='/profile/{{notification.entity}}'
+        {% else %}
+            href='/post/{{notification.entity}}'
+        {% endif %}
+
+        data-notification-id="{{notification._id}}"
+        >
+          <div class='notification-container w-full p-3 flex flex-1 items-center font-roboto pointer-events-none'>
+              {% render 'small_profile_image_rounded', user: notification.userFrom %}
+
+              <div class='flex items-center justify-between w-full space-x-1 ml-3 pointer-events-none'>
+                  <div class='pointer-events-none'>
+                      <span class='notification-user-fullName text-xs xs:text-sm sm:text-base text-dark-gray-for-text  pointer-events-none'>
+                        {{notification.userFrom.fullName}}
+                      </span>
+                    
+                      {% if notification.notificationType == 'follow' %}
+                        <span class='notification-text text-dark-gray-for-text  pointer-events-none  text-xs xs:text-sm sm:text-base'> has started following you</span>
+
+                      {% elsif notification.notificationType == 'retweet' %}
+                        <span class='notification-text text-dark-gray-for-text  pointer-events-none text-xs xs:text-sm sm:text-base'> has re-posted one of your posts</span>
+
+                      {% elsif notification.notificationType == 'like' %}
+                        <span class='notification-text text-dark-gray-for-text  pointer-events-none text-xs xs:text-sm sm:text-base'> liked one of your posts</span>
+                        
+                      {% elsif notification.notificationType == 'comment' %}
+                        <span class='notification-text text-dark-gray-for-text  pointer-events-none text-xs xs:text-sm sm:text-base'> replied to one of your posts</span>
+
+                      {% else %}
+                        SHOULD NOT HAPPEN
+                      {% endif %}
+                  </div>
+
+                  {% if notification.read == false %}
+                    <div class='p-1 rounded-full bg-brand-purple pointer-events-none'></div>
+                  {% endif %}
+              </div>
+          </div>
+        </a>
+      {% endfor %}
+
+{% else %}
+    <div class='px-3 py-2'>
+      <h2>There are no notifications</h2>
+    </div>
+
+{% endif %}

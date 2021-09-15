@@ -1,0 +1,159 @@
+{% assign postID = post._id %}
+{% assign originalPost = post.replyTo %}
+{% assign commentPostedByUser = post.postedBy %}
+{% assign originalPostPostedByUser = post.replyTo.postedBy %}
+
+<div class='post-wrapper animate__animated w-full border-b border-super-light-gray-border flex flex-row justify-between pb-3' >
+  <div class='images-wrapper w-1/12 flex flex-col items-center px-8 md:px-10 lg:px-14 pt-2 pb-2'>
+      <a href="/profile/{{originalPostPostedByUser.username}}" class='cursor-pointer mb-3'>
+        {% render 'small_profile_image_rounded', user: originalPostPostedByUser, additionalClasses: 'pt-2' %}
+      </a>
+
+      <div class="left-column__line-separator border bg-[#c4cfd6] border-[#c4cfd6]"></div>
+
+      <a href="/profile/{{commentPostedByUser.username}}" class='cursor-pointer'>
+        {% render 'small_profile_image_rounded', user: commentPostedByUser, additionalClasses: 'pt-2' %}
+      </a>
+  </div>
+  
+  <div class='posts-comment-wrapper w-11/12 flex flex-col justify-around'>
+
+    {% if originalPost.content %}
+
+    {% else %}
+      <div class='w-full cursor-default pt-2'>
+        <p class='text-gray-500 text-sm font-semibold md:text-base '>
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="mr-1 pointer-events-none inline-block fill-current h-5 w-5 align-text-bottom font-bold">
+            <g>
+              <path d="M23.77 15.67c-.292-.293-.767-.293-1.06 0l-2.22 2.22V7.65c0-2.068-1.683-3.75-3.75-3.75h-5.85c-.414 0-.75.336-.75.75s.336.75.75.75h5.85c1.24 0 2.25 1.01 2.25 2.25v10.24l-2.22-2.22c-.293-.293-.768-.293-1.06 0s-.294.768 0 1.06l3.5 3.5c.145.147.337.22.53.22s.383-.072.53-.22l3.5-3.5c.294-.292.294-.767 0-1.06zm-10.66 3.28H7.26c-1.24 0-2.25-1.01-2.25-2.25V6.46l2.22 2.22c.148.147.34.22.532.22s.384-.073.53-.22c.293-.293.293-.768 0-1.06l-3.5-3.5c-.293-.294-.768-.294-1.06 0l-3.5 3.5c-.294.292-.294.767 0 1.06s.767.293 1.06 0l2.22-2.22V16.7c0 2.068 1.683 3.75 3.75 3.75h5.85c.414 0 .75-.336.75-.75s-.337-.75-.75-.75z"></path>
+            </g>
+          </svg>
+          Reposted from <a class='ml-1 cursor-pointer' href="profile/{{originalPost.retweetData.postedBy.username}}">
+            @{{ originalPost.retweetData.postedBy.username }}
+          </a>
+        </p>
+      </div>
+    {% endif %}
+      
+    <div class='original-post w-full flex flex-row space-x-5 border-b border-super-light-gray-border bg-opacity-25 justify-between py-2 sm:py-3 md:py-4 pr-2 sm:pr-3 md:pr-4 lg:pr-8 ' data-pid="{{originalPost._id}}">
+      
+      <div class='post-content-container flex flex-col w-full'>
+        <div class='post-content__info flex flex-row items-center w-full'>
+          <div class='
+          {% if user._id == post.postedBy._id%}
+            w-10/12
+          {% else %}
+            w-full 
+          {% endif %} 
+          flex flex-row items-center '>
+
+            <div class="post-content-info__username-container">
+              <p class="name">
+                <a href="/profile/{{originalPostPostedByUser.username}}">{{originalPostPostedByUser.fullName}} - </a>
+              </p>
+            </div>
+            
+            <div class="post-content-info__email-container">
+              <a class="username text-brand-blue font-medium" href="/profile/{{originalPostPostedByUser.username}}">@{{originalPostPostedByUser.username}}</a>
+            </div>
+            
+            <div class="post-content-info__time-container">
+              <p class="time font-normal">- {{originalPost.fromNow}}</p>
+            </div>
+          </div>
+
+    {% if user._id == originalPost.postedBy._id%}
+          <div class='w-2/12'>
+            <div class="delete-post-button-wrapper flex items-start justify-end pr-2">
+              <button type="button" class="cursor-pointer delete-post-button focus:outline-none p-1 sm:p-2 rounded-full">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" class="fill-current pointer-events-none text-mid-gray-for-text post-icon">
+                      <g><path class='' d="M13.414 12l5.793-5.793c.39-.39.39-1.023 0-1.414s-1.023-.39-1.414 0L12 10.586 6.207 4.793c-.39-.39-1.023-.39-1.414 0s-.39 1.023 0 1.414L10.586 12l-5.793 5.793c-.39.39-.39 1.023 0 1.414.195.195.45.293.707.293s.512-.098.707-.293L12 13.414l5.793 5.793c.195.195.45.293.707.293s.512-.098.707-.293c.39-.39.39-1.023 0-1.414L13.414 12z"></path></g>
+                  </svg>
+              </button>
+            </div>
+          </div>
+    {% endif %}
+
+        </div>
+
+        <div class="post-content__text w-11/12 mt-1 cursor-pointer">
+          {% comment %} OVDE JE IF I SVE U JEDNOM REDU ZBOG PRE LINE {% endcomment %}
+          <p class='text-sm md:text-base whitespace-pre-line'>{% if originalPost.content %}{{originalPost.content  | strip }}{% else %}{{originalPost.retweetData.content  | strip }}{% endif %}</p>
+
+          <div class='w-full md:w-10/12'>
+            {% if originalPost.images.size > 0 %}
+              {% render 'post_content_images', images: originalPost.images %}
+            {% endif %}
+          </div>
+        </div>
+
+        {% render 'post_buttons_wrapper', post: originalPost, user: user, showNumbers: true %}
+      </div>
+    </div>
+
+    <div class='comment-post original-post w-full flex flex-row space-x-5 justify-between pt-2 sm:pt-3 md:pt-4 pr-2 sm:pr-3 md:pr-4 lg:pr-8' data-pid="{{postID}}">
+
+        <div class='post-content-container flex flex-col w-full'>
+          <div class='post-content__info flex flex-row items-center w-full'>
+            <div class='
+            
+             {% if user._id == post.postedBy._id%}
+                w-10/12
+              {% else %}
+                w-full 
+              {% endif %} 
+           flex flex-row items-center '>
+
+              <div class="post-content-info__username-container">
+                <p class="name">
+                  <a href="/profile/{{post.postedBy.username}}">{{commentPostedByUser.fullName}} - </a>
+                </p>
+              </div>
+              
+              <div class="post-content-info__email-container">
+                <a class="username text-brand-blue font-medium" href="/profile/{{commentPostedByUser.username}}">@{{commentPostedByUser.username}}</a>
+              </div>
+              
+              <div class="post-content-info__time-container">
+                <p class="time font-normal">- {{post.fromNow}}</p>
+              </div>
+            </div>
+
+      {% if user._id == post.postedBy._id %}
+            <div class='w-2/12'>
+              <div class="delete-post-button-wrapper flex items-start justify-end pr-2">
+                <button type="button" class="cursor-pointer delete-post-button focus:outline-none  p-1 pt-1 sm:p-2 rounded-full">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" class="fill-current pointer-events-none text-mid-gray-for-text post-icon">
+                        <g><path class='' d="M13.414 12l5.793-5.793c.39-.39.39-1.023 0-1.414s-1.023-.39-1.414 0L12 10.586 6.207 4.793c-.39-.39-1.023-.39-1.414 0s-.39 1.023 0 1.414L10.586 12l-5.793 5.793c-.39.39-.39 1.023 0 1.414.195.195.45.293.707.293s.512-.098.707-.293L12 13.414l5.793 5.793c.195.195.45.293.707.293s.512-.098.707-.293c.39-.39.39-1.023 0-1.414L13.414 12z"></path></g>
+                    </svg>
+                </button>
+              </div>
+            </div>
+      {% endif %}
+
+          </div>
+
+          <div class='w-full'>
+            <p class='text-gray-500 text-xs sm:text-sm md:text-base font-medium sm:font-semibold'>
+              Replying to <a class='text-brand-blue font-medium cursor-pointer' href="profile/{{commentPostedByUser.username}}">@{{ originalPostPostedByUser.username }}</a>
+            </p>
+          </div>
+
+          <div class="post-content__text w-11/12 mt-1 cursor-pointer">
+            <p class='text-sm md:text-base whitespace-pre-line'>{{post.content | strip }}</p>
+
+            <div class='w-full md:w-10/12'>
+              {% if post.images.size > 0 %}
+                {% render 'post_content_images', images: post.images %}
+              {% endif %}
+            </div>
+          </div>
+
+          {% render 'post_buttons_wrapper', post: post, user: user, showNumbers: true %}
+        </div>
+    </div>
+  </div>
+  
+    
+  
+</div>

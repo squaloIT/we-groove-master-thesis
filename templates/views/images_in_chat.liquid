@@ -1,0 +1,9 @@
+<div class='mt-2'>
+  {% if images.size > 0 %}
+    {% for src in images %}
+
+      <img src='{{src}}' class='max-h-48 md:max-h-60 max-w-full mb-2' />
+
+    {% endfor %}
+  {% endif %}
+</div>

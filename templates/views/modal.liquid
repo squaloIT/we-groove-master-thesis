@@ -1,0 +1,21 @@
+<div id="modal-container" class="fixed top-0 left-0 w-full h-full flex lg:flex-wrap flex-col items-center bg-blue-500 bg-opacity-50 transform transition-transform duration-300 hidden font-roboto">
+    <div class="bg-white w-[95%] xs:w-[90%] h-[fit-content] md:w-[75vw] lg:w-[50vw] max-h-[85vh] rounded-2xl overflow-hidden mt-12"> 
+        {% if page == 'inbox' %}
+            <!-- Modal Header -->
+            {% render 'modal_header', header_text: "Change chat name" %}
+            <!-- Modal content -->
+            {% render 'modal_content_inbox', user: user %}
+            {% render 'modal_footer_save_cancel', user: user %}
+        {% else %}
+            <!-- Modal Header -->
+            {% render 'modal_header' %}
+            <!-- Modal content -->
+            {% render 'modal_content_comment', user: user %}
+        {% endif %}
+    </div>
+    <div class='w-[500px] relative flex justify-center sm:block'>
+        <div class='comment-emoji-tooltip hidden absolute top-1' id='comment-emoji-tooltip'></div>
+    </div>
+    <input type='file' accept="image/*" id='comment-images-for-upload' class='hidden' multiple />
+</div>
+

@@ -1,0 +1,60 @@
+<div class='comment-modal__content p-3 flex justify-between'>
+
+    <div class='modal-content__left-column flex flex-col w-20  items-center'>
+        <div class='left-column__profile-pic flex items-center'>
+            <img class='post-creator-profile-picture w-12 sm:w-14 md:w-16 rounded-full' src="{{user.profilePic}}" alt='{{user.username}}' />
+        </div>
+            {% comment %} h-44 {% endcomment %}
+        <div class='left-column__line-separator border bg-[#c4cfd6] border-[#c4cfd6]'></div>
+
+        <div class='left-column__profile-pic flex items-center'>
+            <img class='user-profile-picture w-12 sm:w-14 md:w-16 rounded-full' src="{{user.profilePic}}" alt="{{user.username}}" />
+        </div>
+    </div>
+
+    <div class='modal-content__right-column flex flex-col w-[80%] sm:w-[85%] h-[90%] ml-1.5 xs:ml-0'>
+        <div class='right-column__header items-baseline flex flex-wrap sm:flex-nowrap flex-row w-full space-x-2'>
+            <span class='postedBy-name font-bold whitespace-nowrap text-xs sm:text-sm md:text-base break-words'></span>
+            <span class='postedBy-username font-normal text-light-gray-for-text text-xs sm:text-sm md:text-base'></span>
+            <span class='postedBy-month-and-date font-normal text-light-gray-for-text text-xs sm:text-sm md:text-base'></span>
+        </div>
+
+        <div class='post-content h-auto flex flex-col my-2 sm:my-1 justify-between'>
+            <p class='text-sm sm:text-base break-words whitespace-pre-line-line my-1 text-dark-gray-for-text min-h-[20px]'>
+            </p>
+            <p class='text-sm sm:text-base font-normal text-light-gray-for-text'>
+                Replying to <a href="#" class='text-comment-button-blue postedBy-username-link'></a>
+            </p>
+        </div>
+        
+        <div class='reply-aria w-full mt-4'>
+            <textarea class='text-sm xs:text-base sm:text-base md:text-lg resize-none w-full rounded-md overflow-hidden text-dark-gray-for-text max-h-[150px] transparent-borderless-spinneles-element pl-1.5' 
+            placeholder='Your reply'
+            value='' ></textarea>
+
+            {% render 'upload-images-preview' %}
+
+            <div class='reply-icons-wrapper flex justify-between'>
+                <div class='reply-icons w-52 flex items-end'>
+                    <button type="button" 
+                    class="cursor-pointer comment-image-button focus:outline-none hover:bg-comment-button-blue-background hover:text-comment-button-blue p-2 rounded-full">
+                        <svg viewBox="0 0 24 24" aria-hidden="true" class="pointer-events-none fill-current text-comment-button-blue w-5 h-5 sm:w-6 sm:h-6"><g><path d="M19.75 2H4.25C3.01 2 2 3.01 2 4.25v15.5C2 20.99 3.01 22 4.25 22h15.5c1.24 0 2.25-1.01 2.25-2.25V4.25C22 3.01 20.99 2 19.75 2zM4.25 3.5h15.5c.413 0 .75.337.75.75v9.676l-3.858-3.858c-.14-.14-.33-.22-.53-.22h-.003c-.2 0-.393.08-.532.224l-4.317 4.384-1.813-1.806c-.14-.14-.33-.22-.53-.22-.193-.03-.395.08-.535.227L3.5 17.642V4.25c0-.413.337-.75.75-.75zm-.744 16.28l5.418-5.534 6.282 6.254H4.25c-.402 0-.727-.322-.744-.72zm16.244.72h-2.42l-5.007-4.987 3.792-3.85 4.385 4.384v3.703c0 .413-.337.75-.75.75z"></path><circle cx="8.868" cy="8.309" r="1.542"></circle></g></svg>
+                    <button/>
+                    
+                    <button type="button" 
+                    class="cursor-pointer emoji-modal-button focus:outline-none hover:bg-comment-button-blue-background hover:text-comment-button-blue p-2 rounded-full">
+                        <svg viewBox="0 0 24 24" aria-hidden="true" class="pointer-events-none fill-current text-comment-button-blue w-5 h-5 sm:w-6 sm:h-6"><g><path d="M12 22.75C6.072 22.75 1.25 17.928 1.25 12S6.072 1.25 12 1.25 22.75 6.072 22.75 12 17.928 22.75 12 22.75zm0-20C6.9 2.75 2.75 6.9 2.75 12S6.9 21.25 12 21.25s9.25-4.15 9.25-9.25S17.1 2.75 12 2.75z"></path><path d="M12 17.115c-1.892 0-3.633-.95-4.656-2.544-.224-.348-.123-.81.226-1.035.348-.226.812-.124 1.036.226.747 1.162 2.016 1.855 3.395 1.855s2.648-.693 3.396-1.854c.224-.35.688-.45 1.036-.225.35.224.45.688.226 1.036-1.025 1.594-2.766 2.545-4.658 2.545z"></path><circle cx="14.738" cy="9.458" r="1.478"></circle><circle cx="9.262" cy="9.458" r="1.478"></circle></g></svg>
+                    </button>
+                </div>
+
+                <div class='reply-button-wrapper mt-4 mr-2'>
+                {% comment %} #1da1f2 {% endcomment %}
+                    <button class='bg-opacity-50 cursor-auto reply-comment-button font-semibold rounded-xl bg-comment-button-blue text-white outline-none py-2 px-3 md:px-4 text-sm sm:text-base lg:text-lg' disabled>
+                        <span class='comment-button__label pointer-events-none'>Reply</span>
+                        <i class="comment-button__spinner hidden pointer-events-none fas fa-spinner fa-pulse"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

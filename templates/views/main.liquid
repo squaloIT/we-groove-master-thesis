@@ -1,0 +1,71 @@
+<html>
+
+{% render 'head_partial', page: page %}
+
+<body>
+  <div class='sm:px-10 sm:mx-auto font-roboto'>
+    <div class='flex justify-items-center lg:justify-between'>
+      <div class='pt-2 w-[10%] xl:w-[15%] hidden md:flex md:flex-col items-center lg:items-end '>
+        <div class='flex flex-col items-center gap-y-5 fixed'>
+          {% render 'left_column', user: user, numOfUnreadNotifications: numOfUnreadNotifications, numOfUnreadChats: numOfUnreadChats %}
+        </div>
+      </div>
+
+      <div class='w-full md:w-[85%] lg:w-[55%] border-l-2 border-r-2 border-super-light-gray-border min-h-screen  
+      {% if subPage == 'chat' %}
+        h-screen
+      {% else %}
+      pb-10
+      {% endif %}
+      '>
+        {% if page == 'home' %}
+          {% render 'home_page_layout', user: user, posts: posts, title: title %}
+
+        {% elsif page == 'post' %}
+          {% render 'post_page_layout', user: user, post: post, repliesForPost: repliesForPost, title: title %}
+        
+        {% elsif page == 'profile' %}
+          {% render 'profile_page_layout', user: user, userProfile: userProfile, active: active, posts: posts, pinnedPost:pinnedPost %}
+        
+        {% elsif page == 'search' %}
+          {% render 'search_page_layout', user: user, active: active, title: title %}
+        
+        {% elsif page == 'inbox' %}
+          {% render 'inbox_page_layout', user: user, active: active, title: title, chats: chats, subPage: subPage, chat: chat, messages: messages %}
+        
+        {% elsif page == 'followers_page' %}
+          {% render 'followers_page_layout', user: user, userProfile: userProfile, active: active, followingOrFollowers: followingOrFollowers %}
+        
+        {% elsif page == 'notifications' %}
+          {% render 'notification_page_layout', user: user, title: title, notifications: notifications %}
+        
+        {% elsif page == 'topics' %}
+          {% render 'topics_page_layout', user: user, posts: posts, title: title %}
+
+        {% else %}
+          {% render 'post', post: post, user: user %}
+          
+        {% endif %}
+      </div>
+
+      <div class='w-[20%] hidden lg:block'>
+        {% render 'right_column', popularHashtags: popularHashtags, user: user %}
+      </div>
+      <div class='w-[5%] hidden lg:block'></div>
+    </div>
+    <input type='hidden' name='test' id='test' value="{{jwtUser}}" />
+    
+    <audio class='hidden w-1/2' src="./../../dist/assets/ringtone.mp3" loop id='ringtone'></audio>
+  </div>
+
+  {% render 'online-users', user: user %}
+  {% render 'modal', user: user, page: page %}
+  {% render 'a2hs' %}
+  
+  {% render 'audio_call_modal' %}
+  {% render 'video_call_modal' %}    
+</body>
+
+<script src="/script.bundle.js"></script>
+
+</html>

@@ -1,0 +1,29 @@
+{% assign activeDownCased = active | downcase %}
+{% assign textDownCased = text | downcase %}
+
+{% if activeDownCased == textDownCased %}
+   
+    <div class='active tab-container w-1/{{width}} hover:bg-comment-button-blue hover:bg-opacity-20 hover:cursor-pointer hover:text-brand-blue hover:border-brand-blue '>
+
+      <a class='block w-full' href="{{href}}">
+        <div class='tab'>
+          <span class='text-brand-blue text-sm md:text-base font-semibold md:font-bold pointer-events-none'>{{text}}</span>
+        </div>
+      </a>
+
+    </div>
+
+{% else %}
+
+    <div class='tab-container w-1/{{width}} hover:bg-comment-button-blue hover:bg-opacity-20 
+      hover:cursor-pointer hover:text-brand-blue hover:border-brand-blue'>
+
+      <a class='block w-full' href="{{href}}"> 
+        <div class='tab'>
+          <span class='text-dark-gray-for-text text-sm md:text-base font-semibold md:font-bold  pointer-events-none'>{{text}}</span>
+        </div>
+      </a>
+
+    </div>
+  
+{% endif %}

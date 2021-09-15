@@ -1,0 +1,17 @@
+<div class="w-full">
+  <div class='flex border-b border-super-light-gray-border px-3 py-3'>
+    <h1 class="page-title w-10/12 text-2xl sm:text-3xl"> {{title}}</h1>
+    <div class='w-2/12 flex justify-end items-center md:hidden'>
+      {% render 'hamburger_menu' user: user %}
+    </div>
+  </div>
+
+  <div class='post-insert-wrapper'>
+    {% render 'insert_post_form' user: user %}
+  </div>
+
+  <div class='relative w-full test'>
+    <div class='insert-post-emojis-tooltip hidden absolute -top-5 left-0' id='insert-post-emojis-tooltip'></div>
+  </div>
+  {% render 'posts', posts: posts, user: user %}
+</div>

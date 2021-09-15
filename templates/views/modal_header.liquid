@@ -1,0 +1,16 @@
+<div class='modal__header h-12 px-4 border-b border-gray-200 rounded-tl-2xl rounded-tr-2xl pt-1'>
+    <div class='modal-header__close-wrapper font-bold text-base text-brand-blue flex items-center'>
+        <div class='modal-header-text w-full'>
+            {% if header_text %}
+                <h4 class='ml-2 text-black font-normal text-xl'>{{header_text}}</h4>
+            {% endif %}
+        </div>
+         <button 
+            type="button" 
+            class="cursor-pointer close-modal-button focus:outline-none hover:bg-comment-button-blue-background hover:text-comment-button-blue p-2 rounded-full text-comment-button-blue">
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="fill-current pointer-events-none text-comment-button-blue w-6 h-6">
+                <g><path class='' d="M13.414 12l5.793-5.793c.39-.39.39-1.023 0-1.414s-1.023-.39-1.414 0L12 10.586 6.207 4.793c-.39-.39-1.023-.39-1.414 0s-.39 1.023 0 1.414L10.586 12l-5.793 5.793c-.39.39-.39 1.023 0 1.414.195.195.45.293.707.293s.512-.098.707-.293L12 13.414l5.793 5.793c.195.195.45.293.707.293s.512-.098.707-.293c.39-.39.39-1.023 0-1.414L13.414 12z"></path></g>
+            </svg>
+        </button>
+    </div>
+</div>

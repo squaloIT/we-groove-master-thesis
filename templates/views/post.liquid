@@ -1,0 +1,87 @@
+<div class='post-wrapper w-full border-b border-super-light-gray-border flex flex-row space-x-5 py-2 lg:py-3 px-2 sm:px-4 lg:px-8 justify-between animate__animated' data-pid="{{post._id}}">
+  <a href="/profile/{{post.postedBy.username}}" class='cursor-pointer'>
+    
+    {% render 'small_profile_image_rounded', user: post.postedBy %}
+    
+  </a>
+  <div class='post-content-container flex flex-col w-full'>
+    <div class='post-content__info flex flex-row items-center w-full'>
+      
+      <div class='
+      
+      {% if user._id == post.postedBy._id %}
+        w-10/12 
+      {% else %}
+        w-full
+      {% endif %}
+      flex flex-wrap flex-row items-center'>
+          <div class="w-full 
+          post-content-info__pinned-container 
+          {% if post.pinned == false %}
+            hidden
+          {% else %}
+          block
+          {% endif %}
+          cursor-pointer mb-1">
+            <p class="text-gray-500 text-xs sm:text-sm lg:text-base font-medium md:font-semibold">
+              <i class="fas fa-map-pin fill-current pointer-events-none text-[#F5A962] post-icon"></i>
+              Pinned post
+            </p>
+          </div>
+        
+        <div class="post-content-info__username-container">
+          <p class="name">
+            <a href="/profile/{{post.postedBy.username}}">{{post.postedBy.fullName}} - </a>
+          </p>
+        </div>
+        
+        <div class="post-content-info__email-container">
+          <a class="username text-brand-blue font-medium" href="/profile/{{post.postedBy.username}}">@{{post.postedBy.username}}</a>
+        </div>
+        
+        <div class="post-content-info__time-container pointer-events-none">
+          <p class="time font-normal">- {{post.fromNow}}</p>
+        </div>
+      </div>
+
+{% if user._id == post.postedBy._id %}
+      <div class='w-2/12'>
+        <div class='flex items-start justify-end pr-2'>
+
+          <div class='pinned-button-wrapper inline-block'>
+            <button type="button" class="cursor-pointer pin-post-button focus:outline-none p-1 sm:p-2 rounded-full" data-pinned='{{post.pinned}}'>
+              {% if post.pinned %}
+                <i class="fas fa-map-pin fill-current pointer-events-none text-[#F5A962] text-sm sm:text-base"></i>
+              {% else %}
+                <i class="fas fa-map-pin fill-current pointer-events-none text-mid-gray-for-text text-sm sm:text-base"></i>
+              {% endif %}
+            </button>
+          </div>
+
+          <div class="delete-post-button-wrapper flex items-start justify-end">
+            <button type="button" class="cursor-pointer delete-post-button focus:outline-none p-1 pt-1 sm:p-2 rounded-full">
+                <svg viewBox="0 0 24 24" aria-hidden="true" class="fill-current pointer-events-none text-mid-gray-for-text post-icon">
+                    <g><path class='' d="M13.414 12l5.793-5.793c.39-.39.39-1.023 0-1.414s-1.023-.39-1.414 0L12 10.586 6.207 4.793c-.39-.39-1.023-.39-1.414 0s-.39 1.023 0 1.414L10.586 12l-5.793 5.793c-.39.39-.39 1.023 0 1.414.195.195.45.293.707.293s.512-.098.707-.293L12 13.414l5.793 5.793c.195.195.45.293.707.293s.512-.098.707-.293c.39-.39.39-1.023 0-1.414L13.414 12z"></path></g>
+                </svg>
+            </button>
+          </div>
+
+        </div>
+      </div>
+{% endif %}
+
+    </div>
+
+    <div class="post-content__text w-11/12 mt-1 cursor-pointer">
+      <p class='text-sm md:text-base whitespace-pre-line'>{{post.content}}</p>
+      <div class='w-full md:w-10/12'>
+        {% if post.images.size > 0 %}
+          {% render 'post_content_images', images: post.images %}
+        {% endif %}
+      </div>
+    </div>
+
+    {% render 'post_buttons_wrapper', post: post, user: user, showNumbers: true %}
+  
+  </div>
+</div>

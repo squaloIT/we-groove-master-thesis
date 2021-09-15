@@ -1,0 +1,7 @@
+<div class='w-full flex flex-row justify-between mt-2'> 
+  <div class="w-full post-content__buttons justify-between flex flex-row">
+    {% render 'post_comment_button', post: post, retweetData: retweetData, user: user, showNumbers: showNumbers %}
+    {% render 'post_retweet_button', post: post, retweetData: retweetData, user: user, showNumbers: showNumbers %}
+    {% render 'post_like_button', post: post, retweetData: retweetData, user: user, showNumbers: showNumbers %}
+  </div>
+</div>

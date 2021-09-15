@@ -1,0 +1,25 @@
+<div class='items-baseline flex flex-row w-full space-x-2 my-4 px-8'>
+    <span class='postedBy-name font-bold whitespace-nowrap text-base break-words'>{{user.fullName}}</span>
+    <span class='postedBy-username font-normal text-light-gray-for-text'>{{user.username}}</span>
+</div>
+
+<!-- Modal content -->
+<div class='photo-save-modal__content p-3 flex justify-center w-full mx-auto mb-2 px-8'>
+  <div class='flex flex-col w-full'>
+
+    <div class='flex justify-start my-4'>
+      <label class='label-for-file mr-4'>Upload photo</label>
+
+      <button id='choose-file-button' class='cursor-pointer font-semibold rounded-xl bg-comment-button-blue text-white outline-none px-3 py-2 border-2 border-comment-button-blue text-sm sm:text-base lg:text-lg'>Choose file</button>
+
+      <div class='profile-file-wrapper hidden' id='file-preview-wrapper'>
+        <input type='file' accept="image/*" name='profile-photo' id='photo' data-type="profile"/>
+      </div>
+    </div>
+
+    <div class='image-preview max-w-full w-full' id='image-preview'>
+      <img class='block max-w-full w-full' src="" />
+    </div>
+
+  </div>
+</div>

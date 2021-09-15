@@ -1,0 +1,87 @@
+<div class='header-chat-info-wrapper border-b border-super-light-gray-border'>
+  <div class='header-chat-info-container flex flex-1 px-3 py-2'>
+   
+    <div class='header-chat-image-container'> 
+      {% if chat.users.size > 2 %}
+
+        {% render 'chat_message_header_images', chat: chat, userLogged: user %}
+
+      {% else %}
+        {% for chatUser in chat.users %}
+            {% if chatUser._id != user._id %}
+                <a href="/profile/{{chatUser.username}}">
+                    {% render 'small_profile_image_rounded', user: chatUser %}
+                </a>
+            {% endif %}
+        {% endfor %}
+        {% comment %} User which is logged in is always in the last place so to fisplay other users image i get the first from the array (only two in array) {% endcomment %}
+
+      {% endif %}
+    </div>
+
+    <div class='header-chat-name flex flex-1 items-center ml-2 sm:ml-4'>
+      <h4 class='w-full hover:border-b hover:border-brand-purple hover:cursor-text py-1 px-2 text-gray-700 text-sm xs:text-base sm:text-lg' data-chat-id='{{chat._id}}'>
+        {% if chat.chatName %}
+          {{chat.chatName}}
+        {% else %}
+          {% for chatUser in chat.users %}
+              {% if chatUser._id != user._id %}
+                  {{chatUser.fullName}}
+              {% endif %}
+          {% endfor %}
+        {% endif %}
+      </h4>
+    </div>
+
+
+    <div class='flex items-center hidden' id="is-online-indicator">
+      <div class='flex ml-2'>
+        <i class="fas fa-phone text-comment-button-blue text-md sm:text-lg md:text-xl cursor-pointer hover:bg-comment-button-blue-background hover:text-comment-button-blue p-2 md:p-3 rounded-full transparent-borderless-spinneles-element"></i>
+        <i class="fas fa-video text-comment-button-blue text-md sm:text-lg md:text-xl cursor-pointer hover:bg-comment-button-blue-background hover:text-comment-button-blue p-2 md:p-3 rounded-full transparent-borderless-spinneles-element"></i>
+      </div>
+      
+      <div class='p-1.5 xs:p-2 bg-green-500 rounded-full mx-1'></div>
+    </div>
+  </div>
+
+</div>
+
+
+<div class="chat-messages-container flex flex-1 flex-col h-full overflow-y-auto pt-2">
+  {% for message in messages %}
+      {% render 'chat_message_row', message: message, user: user, chat: chat %}
+  {% endfor %}
+</div>
+
+<div class='chat-typing-container hidden w-full h-8 px-3 pb-14 pt-2'>
+  <img src="http://localhost:3000/assets/loading-dots.gif" alt="dots" class='h-16' />
+</div>
+
+<div class='footer-chat-messages-container flex items-center py-2 px-2'>
+
+  <textarea 
+  class='chat-message-ta resize-none block border-none text-dark-gray-for-text bg-black bg-opacity-5 w-11/12 rounded-2xl py-2 md:py-3 text-xs xs:text-sm' 
+  placeholder="Type your new message..."></textarea>
+
+  <button type="button" class="sm:ml-1 cursor-pointer message-image-button focus:outline-none hover:bg-comment-button-blue-background hover:text-comment-button-blue p-2 rounded-full h-auto">
+      <svg viewBox="0 0 24 24" aria-hidden="true" class="pointer-events-none fill-current text-comment-button-blue w-5 h-5 md:h-6 md:w-6">
+        <g>
+          <path d="M19.75 2H4.25C3.01 2 2 3.01 2 4.25v15.5C2 20.99 3.01 22 4.25 22h15.5c1.24 0 2.25-1.01 2.25-2.25V4.25C22 3.01 20.99 2 19.75 2zM4.25 3.5h15.5c.413 0 .75.337.75.75v9.676l-3.858-3.858c-.14-.14-.33-.22-.53-.22h-.003c-.2 0-.393.08-.532.224l-4.317 4.384-1.813-1.806c-.14-.14-.33-.22-.53-.22-.193-.03-.395.08-.535.227L3.5 17.642V4.25c0-.413.337-.75.75-.75zm-.744 16.28l5.418-5.534 6.282 6.254H4.25c-.402 0-.727-.322-.744-.72zm16.244.72h-2.42l-5.007-4.987 3.792-3.85 4.385 4.384v3.703c0 .413-.337.75-.75.75z"></path>
+          <circle cx="8.868" cy="8.309" r="1.542"></circle>
+        </g>
+      </svg>
+  </button>
+
+  <button class='sm:ml-1 p-2 hover:bg-comment-button-blue-background rounded-full text-sm md:text-lg h-auto' id='emoji-button'>😀</button>
+  <button class='px-1 sm:px-2 md:px-3 hover:bg-comment-button-blue-background rounded-full h-auto' id='send-message-button' data-chat-id='{{chat._id}}'>
+    <i class="fas fa-paper-plane text-comment-button-blue text-base md:text-lg pointer-events-none"></i>
+  </button>
+
+</div>
+
+<div class='px-3 w-full'>
+  {% render 'upload-images-preview' %}
+</div>
+
+<input type='file' accept="image/*" id='message-images-for-upload' class='hidden' multiple />
+<div class='chat-emojis-tooltip hidden absolute bottom-14 right-5' id='chat-emojis-tooltip'></div>

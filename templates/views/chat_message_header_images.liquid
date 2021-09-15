@@ -1,0 +1,7 @@
+<div class='group-message-image-container flex flex-row-reverse border-light-gray-for-text'>
+  {% for user in chat.users %}
+
+    {% render 'small_profile_image_rounded', user: user, additionalClasses: '-ml-3' %}
+
+  {% endfor %}
+</div>

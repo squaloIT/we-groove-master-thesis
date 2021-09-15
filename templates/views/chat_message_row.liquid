@@ -1,0 +1,63 @@
+{% if user._id == message.sender._id %}
+      
+    {% comment %} {% if message.prevMessage.sender != message.sender  %} {% endcomment %}
+    {% if message.prevMessage.sender != message.sender and chat.users.size > 2 %}
+      <div class='message-container flex w-full justify-end px-4' data-sender-id="{{message.sender._id}}">
+          <div class='max-w-[75%] sm:max-w-[65%] md:max-w-[55%] pr-1'>
+            <span class='sender-username text-brand-blue font-semibold'>
+              {{message.sender.fullName}}
+            </span>
+          </div>
+      </div>
+    {% endif %}
+    <div class='message-container sent flex w-full px-4 mb-1' data-sender-id="{{message.sender._id}}">
+      <div class='max-w-[75%] sm:max-w-[65%] md:max-w-[55%]'>
+        <span class='inline-block px-4 py-2 text-sm sm:text-base
+        {% if message.prevMessage.sender != message.sender %}
+          rounded-tr-2xl
+        {% endif %}
+         {% if message.nextMessage.sender != message.sender %}
+          rounded-br-2xl
+        {% endif %}        
+        rounded-tl-2xl rounded-bl-2xl'>
+          {{message.content}}
+
+          {% if message.images.size > 0 %}
+            {% render 'images_in_chat', images: message.images %}
+          {% endif %}
+        
+        </span>
+      </div>
+    </div>
+{% else %}
+    {% if message.prevMessage.sender != message.sender and chat.users.size > 2 %}
+    {% comment %} {% if message.prevMessage.sender != message.sender  %} {% endcomment %}
+      <div class='message-container flex w-full justify-start px-4' data-sender-id="{{message.sender._id}}">
+          <div class='max-w-[75%] sm:max-w-[65%] md:max-w-[55%] pl-1'>
+            <span class='sender-username text-brand-purple font-semibold'>
+              {{message.sender.fullName}}
+            </span>
+          </div>
+      </div>
+    {% endif %}
+
+    <div class='message-container received flex w-full px-4 mb-1' data-sender-id="{{message.sender._id}}">
+      <div class='max-w-[75%] sm:max-w-[65%] md:max-w-[55%] flex justify-start'>
+        <span class='inline-block  px-4 py-2 text-sm sm:text-base 
+          {% if message.prevMessage.sender != message.sender %}
+            rounded-tl-2xl
+          {% endif %}
+          {% if message.nextMessage.sender != message.sender %}
+            rounded-bl-2xl
+          {% endif %}
+          rounded-tr-2xl rounded-br-2xl'>
+        
+          {{message.content}}
+          
+          {% if message.images.size > 0 %}
+            {% render 'images_in_chat', images: message.images %}
+          {% endif %}
+        </span>
+      </div>
+    </div>
+{% endif %}

@@ -1,0 +1,28 @@
+<div class="w-full" id='search_page'>
+  {% comment %} <div class='top-wrapper border-b border-super-light-gray-border pb-4 mt-2 px-3'>
+    <h1 class="page-title text-2xl sm:text-3xl">{{title}}</h1>
+  </div> {% endcomment %}
+  <div class='flex border-b border-super-light-gray-border px-3 py-3'>
+    <h1 class="page-title w-10/12 text-2xl sm:text-3xl"> {{title}}</h1>
+    <div class='w-2/12 flex justify-end items-center md:hidden'>
+      {% render 'hamburger_menu' user: user %}
+    </div>
+  </div>
+  
+  <div class='search_page_search px-1 sm:px-3 py-1.5 sm:py-2.5 md:py-4'>
+    <div class=''>
+      <input type='search' class='w-full text-sm md:text-base mt-0 block px-1 sm:py-2 border-0 sm:border-b-2 border-gray-200 focus:ring-0 focus:border-brand-purple bg-transparent ' placeholder="Your search..." id='search' name='search' data-type="{{active}}" />
+    </div>
+  </div>
+
+  <div class='tabs-wrapper'>
+ 
+      {% render 'profile_page_tab', href: "/search/posts", user: user, active: active, text: 'Posts', width: 2 %}
+      {% render 'profile_page_tab', href: "/search/users", user: user, active: active, text: 'Users', width: 2 %}  
+       
+  </div>
+
+  <div class='content-wrapper' id='search-results'>
+  
+  </div>
+</div>

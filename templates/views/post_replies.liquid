@@ -1,0 +1,5 @@
+<div class='posts w-full' id='posts'>
+  {% for post in replies %}
+      {% render 'post', post: post, user: user %}
+  {% endfor %}
+</div>

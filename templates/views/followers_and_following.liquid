@@ -1,0 +1,11 @@
+<div class='followers-and-following'>
+  {% for follow in followingOrFollowers %}
+
+    {% if active == 'following' %}
+      {% render 'user_following_row', follow: follow, user: user %}
+    {% else %}
+      {% render 'user_follow_row', follow: follow, user: user %}
+    {% endif %}
+
+  {% endfor %}
+</div>
