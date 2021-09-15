@@ -9,7 +9,6 @@ import { CacheFirst, NetworkFirst, NetworkOnly } from 'workbox-strategies';
 
 workbox.setConfig({ debug: true });
 // workbox.skipWaiting();
-workbox.precaching.precacheAndRoute(self.__WB_MANIFEST)
 
 precacheAndRoute([
   // { url: '/', revision: 'dasdasczxczxc2323' }, - Ne moze da bude ovde jer onda dodavanje novog posta ne bude procitano. 
@@ -108,3 +107,5 @@ registerRoute(
   'PUT'
 );
 
+
+workbox.precaching.precacheAndRoute(self.__WB_MANIFEST)
