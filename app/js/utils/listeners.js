@@ -393,11 +393,11 @@ function onSendMessage(e, messageInput, chatMessagesContainer, selectedImages) {
   const chatId = document.querySelector('#send-message-button').dataset.chatId;
   const content = messageInput.value.trim()
 
+  messageInput.value = '';
+  messageInput.focus()
   return sendMessage(chatId, content, selectedImages)
     .then(res => {
       addNewMessage(res.data, 'sent', res.data.images)
-      messageInput.value = '';
-      messageInput.focus()
       scrollMessagesToBottom(chatMessagesContainer)
       stopTyping(chatId)
       return Promise.resolve(res.data)
