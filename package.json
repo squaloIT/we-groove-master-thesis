@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start-prod": "node index.js",
+    "start-prod": "npm run build && node index.js",
     "start": "node index.js",
-    "start-dev": "npm run build:dev && nodemon src/index.js -e js,liquid",
-    "build:prod": "npm run clean && webpack --mode production",
-    "build": "npm run clean && webpack --mode development",
+    "start-dev": "npm run build:dev && nodemon index.js -e js,liquid",
+    "build": "npm run clean && webpack --mode production",
+    "build:dev": "npm run clean && webpack --mode development",
     "stats": "webpack --profile --json > stats.json",
     "dev": "npm run clean && webpack --mode development --watch",
     "clean": "rimraf dist"
@@ -53,14 +53,14 @@
     "workbox-webpack-plugin": "^6.1.5"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7",
     "@babel/core": "^7.13.15",
     "@babel/preset-env": "^7.13.15",
     "babel-loader": "^8.2.2",
-    "compression-webpack-plugin": "^8.0.0",
+    "compression-webpack-plugin": "^8.0.1",
     "css-loader": "^5.2.3",
     "cssnano": "^5.0.1",
     "dotenv-webpack": "^7.0.2",
+    "nodemon": "^2.0.7",
     "postcss": "^8.2.10",
     "postcss-cli": "^8.3.1",
     "postcss-loader": "^5.2.0",
