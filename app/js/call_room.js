@@ -9,8 +9,8 @@ export default function call_room() {
 
   const myPeer = new Peer(undefined, {
     host: `${process.env.PEER_SERVER_URL}`,
-    port,
-    path: '/peerjs/peer-server'
+    port: port === 3000 ? port : 80,
+    path: 'peerjs/peer-server'
   });
   const parts = window.location.pathname.split("/")
   const ROOM_ID = parts[parts.length - 1]
