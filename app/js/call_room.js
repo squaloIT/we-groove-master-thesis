@@ -5,7 +5,7 @@ import { createAudioBlock, createVideoCallBlock } from './utils/html-creators';
 export default function call_room() {
   var socket = io(process.env.SERVER_URL)
   const myPeer = new Peer(undefined, {
-    host: '/',
+    host: process.env.PEER_SERVER_URL,
     port: process.env.PORT || '9000'
   });
   const parts = window.location.pathname.split("/")
