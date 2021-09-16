@@ -16,7 +16,7 @@ const port = process.env.PORT || 3000;
 const db = require('./db/index')
 const server = app.listen(port, () => console.log("Server listening on port " + port))
 connect(server);
-const peerServer = PeerServer({ port: process.env.PORT || 9000, path: '/' });
+const peerServer = PeerServer({ port: 9000, path: '/' });
 
 const viewsPath = path.join(__dirname, "./templates/views")
 
