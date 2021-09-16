@@ -11,9 +11,10 @@ workbox.setConfig({ debug: true });
 // workbox.skipWaiting();
 
 // precacheAndRoute(self.__WB_MANIFEST)
-
+if (process.env.NODE_ENV === 'production') {
+  precacheAndRoute(self.__WB_MANIFEST);
+}
 precacheAndRoute([
-  self.__WB_MANIFEST,
   // { url: '/', revision: 'dasdasczxczxc2323' }, - Ne moze da bude ovde jer onda dodavanje novog posta ne bude procitano. 
   { url: '/offline' },
   { url: '/script.bundle.js', revision: '123123asdasdasd' },
