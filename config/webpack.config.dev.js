@@ -59,9 +59,9 @@ module.exports = {
         // },
       ]
     }),
-    new Workbox.InjectManifest({
-      swSrc: path.resolve(__dirname, './../sw.js'),
-      swDest: 'service-worker.js',
-    }),
+    // new Workbox.InjectManifest({
+    //   swSrc: path.resolve(__dirname, './../sw.js'),
+    //   swDest: 'service-worker.js',
+    // }),
   ],
 };
