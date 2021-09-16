@@ -1,4 +1,4 @@
-// importScripts('https://storage.googleapis.com/workbox-cdn/releases/6.1.5/workbox-sw.js');
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/6.1.5/workbox-sw.js');
 
 import { BackgroundSyncPlugin } from 'workbox-background-sync';
 import { ExpirationPlugin } from 'workbox-expiration';
@@ -14,6 +14,7 @@ workbox.setConfig({ debug: true });
 if (process.env.NODE_ENV === 'production') {
   precacheAndRoute(self.__WB_MANIFEST);
 }
+
 precacheAndRoute([
   // { url: '/', revision: 'dasdasczxczxc2323' }, - Ne moze da bude ovde jer onda dodavanje novog posta ne bude procitano. 
   { url: '/offline' },
