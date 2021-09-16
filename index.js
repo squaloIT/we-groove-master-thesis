@@ -19,7 +19,7 @@ connect(server);
 
 const peerServer = ExpressPeerServer(server, {
   path: '/peer-server',
-  port: process.env.PORT || 3000
+  port
 });
 app.use('/peerjs', peerServer);
 
