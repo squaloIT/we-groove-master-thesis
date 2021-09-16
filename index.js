@@ -18,7 +18,7 @@ const server = app.listen(port, () => console.log("Server listening on port " + 
 connect(server);
 
 const peerServer = ExpressPeerServer(server, {
-  path: process.env.PORT ? '/peer-server/peerjs' : '/peer-server',
+  path: process.env.PORT ? '/peer-server/peerjs/id' : '/peer-server',
   port
 });
 app.use('/peerjs', peerServer);
