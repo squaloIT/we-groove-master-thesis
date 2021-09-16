@@ -1,4 +1,4 @@
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/6.1.5/workbox-sw.js');
+// importScripts('https://storage.googleapis.com/workbox-cdn/releases/6.1.5/workbox-sw.js');
 
 import { BackgroundSyncPlugin } from 'workbox-background-sync';
 import { ExpirationPlugin } from 'workbox-expiration';
@@ -108,4 +108,4 @@ registerRoute(
 );
 
 
-// workbox.precaching.precacheAndRoute(self.__WB_MANIFEST)
+workbox.precaching.precacheAndRoute(self.__WB_MANIFEST)
