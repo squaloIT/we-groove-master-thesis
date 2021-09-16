@@ -6,7 +6,7 @@ const helmet = require('helmet')
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
-const { PeerServer } = require('peer');
+const { ExpressPeerServer } = require('peer');
 const { homeRouter, loginRouter, logoutRouter, postAPI, postsRouter, registrationRouter, profileRouter, searchRouter, searchAPI, messageRouter, notificationRouter, chatAPI, messageAPI, notificationAPI, hashtagRouter, hashtagAPI, callRoomRouter } = require('./routes/index')
 const { checkIsLoggedIn, isRememberedCookiePresent, generateUserJWT, getNumberOfUnreadNotifications, getNumberOfUnreadChats, getMostPopularHashtags } = require('./middleware')
 const { connect } = require('./socket')
@@ -16,7 +16,12 @@ const port = process.env.PORT || 3000;
 const db = require('./db/index')
 const server = app.listen(port, () => console.log("Server listening on port " + port))
 connect(server);
-const peerServer = PeerServer({ port: 9000, path: '/' });
+
+const peerServer = ExpressPeerServer(server, {
+  path: '/peer-server',
+  port: process.env.PORT || 3000
+});
+app.use('/peerjs', peerServer);
 
 const viewsPath = path.join(__dirname, "./templates/views")
 

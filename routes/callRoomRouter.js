@@ -9,6 +9,7 @@ router.get('/:type/:roomId', (req, res, next) => {
   res.status(200).render(callType + '_call_room_layout', {
     user,
     jwtUser: req.jwtUser,
+    port_number: process.env.PORT || 3000
   });
 })
 
