@@ -8,8 +8,8 @@ export default function call_room() {
   console.log("🚀 ~ file: call_room.js ~ line 8 ~ call_room ~ port", port)
 
   const myPeer = new Peer(undefined, {
-    host: `${process.env.PEER_SERVER_URL}`,
-    port: port === 3000 ? port : 443,
+    host: `/`,
+    port: port == 3000 ? port : 443,
     path: 'peerjs/peer-server'
   });
   const parts = window.location.pathname.split("/")

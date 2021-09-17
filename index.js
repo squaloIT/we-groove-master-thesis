@@ -18,10 +18,15 @@ const server = app.listen(port, () => console.log("Server listening on port " + 
 connect(server);
 
 const peerServer = ExpressPeerServer(server, {
-  path: process.env.PORT ? '/peer-server/peerjs/id' : '/peer-server',
-  port
+  path: '/peer-server',
+  allow_discovery: true,
+  debug: true,
+  // port
 });
 app.use('/peerjs', peerServer);
+
+peerServer.on('connection', (client) => { console.log("CLIENT CONNECTED", client) });
+peerServer.on('disconnect', (client) => { console.log("CLIENT DISCONNECTED", client) });
 
 const viewsPath = path.join(__dirname, "./templates/views")
 
