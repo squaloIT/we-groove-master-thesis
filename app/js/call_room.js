@@ -150,6 +150,7 @@ export default function call_room() {
    * @param { user } user
    */
   let videoTimeout = null;
+  let isChanged = null;
   function addVideoCallStreamWhenUserConnected(video, stream, user = null) {
     const videoGrid = document.getElementById('video-grid')
 
@@ -157,6 +158,17 @@ export default function call_room() {
 
     video.addEventListener('loadedmetadata', () => {
       video.play()
+
+      setTimeout(() => {
+        if (!isChanged) {
+          const bigVideo = document.querySelector('#big-video-wrapper video')
+          const smallVideoSrcObject = video.srcObject;
+          video.srcObject = bigVideo.srcObject;
+          bigVideo.srcObject = smallVideoSrcObject;
+
+          isChanged = true;
+        }
+      }, 500)
     })
 
     const divVideoBlock = createVideoCallBlock(video, user)
