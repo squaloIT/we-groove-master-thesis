@@ -2,40 +2,30 @@ require('./../typedefs')
 const moment = require('moment');
 const jwt = require('jsonwebtoken')
 
-/**
- * @param {Number} userId 
- * @param {string} filterTab 
- * @returns { Object }
- */
-function createFiltersForSelectedTab(userId, filterTab) {
-  const filterObj = {}
-
+function filterPostsForSelectedTab(post, filterTab, userId) {
   if (!filterTab) {
-    filterObj.postedBy = userId;
-    filterObj.replyTo = {
-      $exists: false
+    if (String(post.postedBy._id) == userId && !post.replyTo) {
+      return true
     }
   } else {
     if (filterTab == 'posts') {
-      filterObj.postedBy = userId;
-      filterObj.replyTo = {
-        $exists: false
+      if (String(post.postedBy._id) == userId && !post.replyTo) {
+        return true
       }
     }
 
     if (filterTab == 'likes') {
-      filterObj.likes = userId;
+      return post.likes.map(like => String(like)).includes(String(userId));
     }
 
     if (filterTab == 'replies') {
-      filterObj.postedBy = userId;
-      filterObj.replyTo = {
-        $exists: true
+      if (String(post.postedBy._id) == userId && post.replyTo) {
+        return true
       }
     }
   }
 
-  return filterObj
+  return false
 }
 /**
  * @param {Array.<post>} allPosts 
@@ -115,7 +105,7 @@ function colorHashtagsInText(post) {
 }
 
 module.exports = {
-  createFiltersForSelectedTab,
+  filterPostsForSelectedTab,
   getNumberOfCommentsForPost,
   createUserJWT,
   colorHashtagsInText,

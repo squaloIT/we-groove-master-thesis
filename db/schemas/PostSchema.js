@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const UserModel = require('./UserSchema');
 const moment = require('moment');
-const { createFiltersForSelectedTab, getNumberOfCommentsForPost, fillPostAdditionalFields, createHashtag, colorHashtagsInText } = require('../../utils');
+const { getNumberOfCommentsForPost, fillPostAdditionalFields, colorHashtagsInText, filterPostsForSelectedTab } = require('../../utils');
 const HashtagModel = require('./HashtagSchema');
 require('./../../typedefs')
 
@@ -74,17 +74,12 @@ PostSchema.statics.findAllUserPosts = async (userId, filterTab = false) => {
     .sort({ "createdAt": "-1" })
     .lean();
 
-  const filterObj = createFiltersForSelectedTab(userId, filterTab);
-
-  var allPostsForFilters = await PostModel
-    .find({ ...filterObj, pinned: false })
-    .sort({ "createdAt": "-1" })
-    .lean()
-
   /** @type { post[] } allPosts */
-  var postsWithPostedByPopulated = await UserModel.populate(allPostsForFilters, { path: 'retweetData.postedBy' });
+  var allPostsWithPopulatedPostedBy = await UserModel.populate(allPosts, { path: 'retweetData.postedBy' });
 
-  const allPostsWithFromNow = postsWithPostedByPopulated.map(post => fillPostAdditionalFields(post, allPosts));
+  allPostsWithPopulatedPostedBy = allPostsWithPopulatedPostedBy.filter(post => filterPostsForSelectedTab(post, filterTab, userId))
+
+  const allPostsWithFromNow = allPostsWithPopulatedPostedBy.map(post => fillPostAdditionalFields(post, allPosts));
   return allPostsWithFromNow;
 }
 
