@@ -59,15 +59,7 @@ router.get('/:type/:searchTerm', async (req, res) => {
     })
   }
   else if (req.params.type == 'users') {
-    // results = await UserModel.find({
-    //   $or: [
-    //     { username: filter },
-    //     { fullName: filter },
-    //     { email: filter }
-    //   ]
-    // }).lean()
     results = await UserModel.getUsersForSearch(req.params.searchTerm)
-
     results = setIsFollowedForUsers(results, req)
   }
 

@@ -15,7 +15,7 @@ router.get('/', (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   const { email, password, rememberMe } = req.body;
-  console.log("TEST")
+
   /** @type { user } user */
   const foundUser = await userModel.findOne({ email });
   if (!foundUser) {
