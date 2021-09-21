@@ -16,23 +16,23 @@ if (
 
   if (window.location.pathname.indexOf('/call_room') !== 0) {
     let deferredPrompt;
-    // const addBtn = document.getElementById('install-app-button')
+    const addBtn = document.getElementById('install-app-button')
     window.addEventListener('beforeinstallprompt', (e) => {
-      // e.preventDefault();
+      e.preventDefault();
       deferredPrompt = e;
 
-      // addBtn.addEventListener('click', () => {
-      //   document.querySelector("#install-button-wrapper").remove();
-      deferredPrompt.prompt();
-      deferredPrompt.userChoice.then((choiceResult) => {
-        if (choiceResult.outcome === 'accepted') {
-          localStorage.setItem("installed", "true")
-          console.log('User accepted the A2HS prompt');
-        } else {
-          console.log('User dismissed the A2HS prompt');
-        }
-        deferredPrompt = null;
-        // });
+      addBtn.addEventListener('click', () => {
+        document.querySelector("#install-button-wrapper").remove();
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            localStorage.setItem("installed", "true")
+            console.log('User accepted the A2HS prompt');
+          } else {
+            console.log('User dismissed the A2HS prompt');
+          }
+          deferredPrompt = null;
+        });
       });
     });
 
